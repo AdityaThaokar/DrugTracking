@@ -32,8 +32,8 @@
 		<center>
 		<form>
 		<p>Enter The Unique ID of the Drug : </p>
-		<input type="text" style="width:50%;" placeholder="Enter the 32-bit hash number" name="uniqueID">
-		<button type="submit" class="btn btn-info" formaction="index.html" onclick=" ">Verify</button>
+		<input type="text" style="width:50%;" placeholder="Enter uniqueID" id="uniqueID" name="uniqueID">
+		<button type="submit" class="btn btn-info" id="verify"  onclick=" ">Verify</button>
 	</form>
 </center>
 	</div>
@@ -45,16 +45,15 @@
 		</center></small>
 	</footer>
 </body>
-<script type="text/javascript">
-	<script type="text/javascript">
-if (typeof web3 !== 'undefined') 
-{
- web3 = new Web3(web3.currentProvider);
- } 
-else 
-{
-web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
- }
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script>
+if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));   
+        }
+  
  	web3.eth.defaultAccount = web3.eth.accounts[0];
  	var DrugContract = web3.eth.contract([
 	{
@@ -189,18 +188,19 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
 var Drugs = DrugContract.at('0xc9d437dfe1570ca504aa288404c93f9e500820a0');
 
-$(“#blockchain button.set”).click(function() {
-var value = $(“#blockchain input.text”).val();
-var params = {
-gas: 40000,
-from:
-};
-SimpleStorage.sendTransaction.set(value, params);
-});
-$(“#blockchain button.get”).click(function() {
-var value = SimpleStorage.get.call();
-$(“#blockchain .value”).html(value);
-});
+console.log(Drugs);
+
+$("#verify").click(function(error, result) {
+
+			 if(!error)
+                {
+                	Drugs.verify($("#uniqueID").val());
+                    console.log(result);
+                }
+            else
+                console.error(error);
+        });
+
 </script>
 
 </script>
