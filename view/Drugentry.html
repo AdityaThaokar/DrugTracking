@@ -8,6 +8,15 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
 
 	<script language="javascript" type="text/javascript" src="web3.min.js"></script>
+	<style type="text/css">
+		.card{
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		form {
+			padding: 10px;
+		}
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -30,7 +39,7 @@
 	</div>
 		<br><br><br>
 		<div class="container col-lg-4">
-			
+			<div class="card">
 				<form>
 					<div class="form-group ">
 	    			<label for="Dname">Drug Name : </label>
@@ -51,6 +60,7 @@
 	  				<button type="submit" class="btn btn-info" formaction="#" onclick=" ">Submit</button>
 				</form>
 			</div>
+		</div>
 	<br><br><br><br><br>
 	<div class="container bottom">
 	<footer>
@@ -61,9 +71,10 @@
 </body>
 
 <script type="text/javascript">
-if (typeof web3 !== 'undefined') 
+if (typeof web3 != 'undefined') 
 {
- web3 = new Web3(web3.currentProvider);
+ web3 = new Web3("wss://ropston.infuria.io/ws");
+ console.log(web3.eth.accounts);
  } 
 else 
 {
@@ -201,7 +212,7 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 	}
 ]);
 
-var Drugs = DrugContract.at('0xc9d437dfe1570ca504aa288404c93f9e500820a0');
+var Drugs = DrugContract.at('0x692a70d2e424a56d2c6c27aa97d1a86395877b3a');
 
 </script>
 </html>
