@@ -52,13 +52,17 @@
 			<h3>Add drug in the list</h3>
 			<div class="card">
 				<form>
-					<div class="form-group ">
+					<div class="form-group">
 	    			<label for="Dname">Drug Name : </label>
 	    			<input type="text" class="form-control" id="Dname" placeholder="Enter Drug Name">
 	  				</div>
 	  				<div class="form-group ">
 	    			<label for="Oname">Owner's Name : </label>
 	    			<input type="text" class="form-control" id="Oname" placeholder="Enter Owner's Name">
+	  				</div>
+	  				<div class="form-group ">
+	    			<label for="Oname">Drug ID : </label>
+	    			<input type="text" class="form-control" id="DId" placeholder="Enter ID">
 	  				</div>
 	  				<div class="form-group ">
 	    			<label for="Edate">Expiry Date : </label>
@@ -68,7 +72,7 @@
 	    			<label for="Mrp">MRP (in Rs.) : </label>
 	    			<input type="text" class="form-control" id="Mrp" placeholder="Enter the price of drug">
 	  				</div>
-	  				<button type="submit" class="btn btn-info" formaction="#" onclick=" ">Submit</button>
+	  				<button type="submit" class="btn btn-info" formaction="#" id="Entry">Submit</button>
 				</form>
 			</div>
 		</div>
@@ -80,12 +84,12 @@
 		</center></small>
 	</footer>
 </body>
-
-<script type="text/javascript">
+<script src="web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script>
 if (typeof web3 != 'undefined') 
 {
- web3 = new Web3("wss://ropston.infuria.io/ws");
- console.log(web3.eth.accounts);
+ web3 = new Web3(web3.currentProvider);
  } 
 else 
 {
@@ -150,7 +154,7 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 		"inputs": [
 			{
 				"name": "_owner",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "_drugId",
@@ -158,15 +162,15 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 			},
 			{
 				"name": "_drugName",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "_date",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "_mrp",
-				"type": "bytes32"
+				"type": "string"
 			}
 		],
 		"name": "addDrug",
@@ -192,7 +196,7 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 		"outputs": [
 			{
 				"name": "ownername",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "drugId",
@@ -200,15 +204,15 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 			},
 			{
 				"name": "drugName",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "date",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "mrp",
-				"type": "bytes32"
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -223,7 +227,16 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 	}
 ]);
 
-var Drugs = DrugContract.at('0x692a70d2e424a56d2c6c27aa97d1a86395877b3a');
+var Drugs = DrugContract.at('0x390a658ebe87ea107ff948385f97efd5e4a239b7');
+
+$('Entry').click(function(){
+	var oname = $('Oname').value();
+	var dname = $('Dname').value();
+	var did = $('DId').value();
+	var exp = $('Edate').value();
+	var mrp = $('Mrp').value();
+	Drugs.addDrug(oname,did,dname,exp,mrp);
+})
 
 </script>
 </html>
