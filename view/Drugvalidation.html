@@ -6,6 +6,7 @@
 	<title>Drug Validation</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
+	<script language="javascript" type="text/javascript" src="web3.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -44,4 +45,163 @@
 		</center></small>
 	</footer>
 </body>
+<script type="text/javascript">
+	<script type="text/javascript">
+if (typeof web3 !== 'undefined') 
+{
+ web3 = new Web3(web3.currentProvider);
+ } 
+else 
+{
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+ }
+ 	web3.eth.defaultAccount = web3.eth.accounts[0];
+ 	var DrugContract = web3.eth.contract([
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_drugId",
+				"type": "uint256"
+			}
+		],
+		"name": "verify",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drugs_id",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "bytes32"
+			},
+			{
+				"name": "_drugId",
+				"type": "uint256"
+			},
+			{
+				"name": "_drugName",
+				"type": "bytes32"
+			},
+			{
+				"name": "_date",
+				"type": "bytes32"
+			},
+			{
+				"name": "_mrp",
+				"type": "bytes32"
+			}
+		],
+		"name": "addDrug",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drugs",
+		"outputs": [
+			{
+				"name": "ownername",
+				"type": "bytes32"
+			},
+			{
+				"name": "drugId",
+				"type": "uint256"
+			},
+			{
+				"name": "drugName",
+				"type": "bytes32"
+			},
+			{
+				"name": "date",
+				"type": "bytes32"
+			},
+			{
+				"name": "mrp",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+]);
+
+var Drugs = DrugContract.at('0xc9d437dfe1570ca504aa288404c93f9e500820a0');
+
+$(“#blockchain button.set”).click(function() {
+var value = $(“#blockchain input.text”).val();
+var params = {
+gas: 40000,
+from:
+};
+SimpleStorage.sendTransaction.set(value, params);
+});
+$(“#blockchain button.get”).click(function() {
+var value = SimpleStorage.get.call();
+$(“#blockchain .value”).html(value);
+});
+</script>
+
+</script>
 </html>
