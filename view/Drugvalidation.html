@@ -7,12 +7,32 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
 	<script language="javascript" type="text/javascript" src="web3.min.js"></script>
+	<style type="text/css">body
+		{
+			background-color: #090b1e;
+		}
+		.card{
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		form {
+			padding: 10px;
+		}
+		.container h3,p{
+			color: white;
+		}
+		.nav-link{
+			color: white;
+		}
+		.nav-link:hover{
+			color: #84b3ff;
+		}
+	</style>
 </head>
 <body>
-	<div class="container">
-		<div class="container">
+		<div class="container-fluid">
 		<nav class="navbar col-bg-12">
-			<ul class="nav nav-tabs">
+			<ul class="nav nav-pills">
 		  <li class="nav-item">
 		    <a class="nav-link " href="Home.html">Home</a>
 		  </li>
@@ -31,6 +51,7 @@
 	<div class="container col-blg-12">
 		<center>
 		<form>
+		<h3>Validate the Drug !</h3>
 		<p>Enter The Unique ID of the Drug : </p>
 		<input type="text" style="width:50%;" placeholder="Enter uniqueID" id="uniqueID" name="uniqueID">
 		<button type="submit" class="btn btn-info" id="verify"  onclick=" ">Verify</button>
@@ -56,58 +77,6 @@ if (typeof web3 !== 'undefined') {
   
  	web3.eth.defaultAccount = web3.eth.accounts[0];
  	var DrugContract = web3.eth.contract([
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_drugId",
-				"type": "uint256"
-			}
-		],
-		"name": "verify",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "drugs_id",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
 	{
 		"constant": false,
 		"inputs": [
@@ -142,6 +111,12 @@ if (typeof web3 !== 'undefined') {
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"constant": true,
@@ -179,14 +154,60 @@ if (typeof web3 !== 'undefined') {
 		"type": "function"
 	},
 	{
-		"inputs": [],
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drugs_id",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_drugId",
+				"type": "uint256"
+			}
+		],
+		"name": "verify",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]);
 
-var Drugs = DrugContract.at('0xc9d437dfe1570ca504aa288404c93f9e500820a0');
+var Drugs = DrugContract.at('0xe876984de70f0ad600558edf40bdb4b9b5fb4b57');
 
 console.log(Drugs);
 

@@ -15,12 +15,32 @@
 			padding: 10px;
 		}
 	</style>	
+	<style type="text/css">body
+		{
+			background-color: #090b1e;
+		}
+		.card{
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		form {
+			padding: 10px;
+		}
+		.container h3,p{
+			color: white;
+		}
+		.nav-link{
+			color: white;
+		}
+		.nav-link:hover{
+			color: #84b3ff;
+		}
+	</style>
 </head>
 <body>
-	<div class="container">
-		<div class="container">
+		<div class="container-fluid">
 		<nav class="navbar col-bg-12">
-			<ul class="nav nav-tabs">
+			<ul class="nav nav-pills">
 		  <li class="nav-item">
 		    <a class="nav-link " href="Home.html">Home</a>
 		  </li>
@@ -35,13 +55,18 @@
 		  </li>
 		</nav>
 	</div>
-		<br><br><br>
+		<br>
 		<div class="container col-lg-4">
-			<div class="card1">
+			<h3>Update the Owner</h3>
+				<div class="card">
 				<form>
 	  				<div class="form-group ">
 	    			<label for="COname">Current Owner's Name : </label>
 	    			<input type="text" class="form-control" id="COname" placeholder="Enter Owner's Name">
+	  				</div>
+	  				<div class="form-group ">
+	    			<label for="NOname">New Owner's Name : </label>
+	    			<input type="text" class="form-control" id="NOname" placeholder="Enter Owner's Name">
 	  				</div>
 	  				<div class="form-group ">
 	    			<label for="UID">Unique ID : </label>
@@ -49,9 +74,10 @@
 	  				</div>
 	  				<button type="submit" class="btn btn-info" formaction="#" onclick=" ">Submit</button>
 				</form>
+				</div>
 			</div>
 		</div>
-	<br><br><br><br><br>
+	<br><br><br>
 	<div class="container bottom">
 	<footer>
 		<center><small>
