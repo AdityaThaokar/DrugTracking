@@ -5,11 +5,11 @@ contract drugTrack{
 
 
     struct drug_details {
-        bytes32 ownername;
+        string ownername;
         uint drugId;
-        bytes32 drugName;
-        bytes32 date;
-        bytes32 mrp;
+        string drugName;
+        string date;
+        string mrp;
     }
     
     drug_details[] public drugs;
@@ -22,7 +22,7 @@ contract drugTrack{
     }
     
     
-    function addDrug(bytes32 _owner,uint _drugId ,bytes32 _drugName,bytes32 _date,bytes32 _mrp) public returns (uint) {
+    function addDrug(string memory _owner,uint _drugId ,string memory _drugName,string memory _date,string memory _mrp) public returns (uint) {
         require(
             msg.sender == owner
         );
