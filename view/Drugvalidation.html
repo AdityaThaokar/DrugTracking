@@ -5,8 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Drug Validation</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
-	<script language="javascript" type="text/javascript" src="web3.min.js"></script>
+	
+     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+ 
+	
 	<style type="text/css">
 	body
 		{
@@ -54,12 +56,13 @@
 		<br><br><br>
 	<div class="container col-blg-12">
 		<center>
-		<form>
+
 		<h3>Validate the Drug !</h3>
 		<p>Enter The Unique ID of the Drug : </p>
 		<input type="text" style="width:50%;" placeholder="Enter uniqueID" id="uniqueID" name="uniqueID">
-		<button type="submit" class="btn btn-info" id="verify"  onclick=" ">Verify</button>
-	</form>
+		<button class="btn btn-info" id="verify">Verify</button>
+
+	 <h2 id="instructor" style="color:white"></h2>
 </center>
 	</div>
 	<br><br><br><br><br>
@@ -71,162 +74,237 @@
 	</footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script>
-if (typeof web3 !== 'undefined') {
+
+   <script>
+        if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
         } else {
-            // set the provider you want from Web3.providers
-            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));   
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
         }
-  
- 	web3.eth.defaultAccount = web3.eth.accounts[0];
- 	var DrugContract = web3.eth.contract([
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "bytes32"
-			},
-			{
-				"name": "_drugId",
-				"type": "uint256"
-			},
-			{
-				"name": "_drugName",
-				"type": "bytes32"
-			},
-			{
-				"name": "_date",
-				"type": "bytes32"
-			},
-			{
-				"name": "_mrp",
-				"type": "bytes32"
-			}
-		],
-		"name": "addDrug",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "drugs",
-		"outputs": [
-			{
-				"name": "ownername",
-				"type": "bytes32"
-			},
-			{
-				"name": "drugId",
-				"type": "uint256"
-			},
-			{
-				"name": "drugName",
-				"type": "bytes32"
-			},
-			{
-				"name": "date",
-				"type": "bytes32"
-			},
-			{
-				"name": "mrp",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "drugs_id",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_drugId",
-				"type": "uint256"
-			}
-		],
-		"name": "verify",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]);
 
-var Drugs = DrugContract.at('0xe876984de70f0ad600558edf40bdb4b9b5fb4b57');
+        web3.eth.defaultAccount = web3.eth.accounts[0];
 
-console.log(Drugs);
+         var addr = '0xc78d57689fdb59a49faa78655365a24e7abfb0b0'; 
+         var abi = [
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "count",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "age",
+                "type": "uint256"
+            },
+            {
+                "name": "oname",
+                "type": "string"
+            }
+        ],
+        "name": "addTransactions",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getInstructor",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "Record",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "drug_owner_list",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "_age",
+                "type": "uint256"
+            }
+        ],
+        "name": "validateDrug",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_fName",
+                "type": "string"
+            },
+            {
+                "name": "_age",
+                "type": "uint256"
+            },
+            {
+                "name": "_oname",
+                "type": "string"
+            }
+        ],
+        "name": "setInstructor",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "drug_count",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getTransactionsLength",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "age",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "oname",
+                "type": "string"
+            }
+        ],
+        "name": "Instructor",
+        "type": "event"
+    }
+]
 
-$("#verify").click(function(error, result) {
+var CoursetroContract = web3.eth.contract(abi);
 
-			 if(!error)
-                {
-                	Drugs.verify($("#uniqueID").val());
-                    console.log(result);
+
+        var Coursetro = CoursetroContract.at(addr);
+
+       $("#verify").click(function() {
+	   console.log('Clicked');
+
+           var age = $("#uniqueID").val();
+           Coursetro.validateDrug(age, (err, res) => {
+                if (err) {
+                  
+                    console.log('oh no');
                 }
-            else
-                console.error(error);
-        });
+                var result = res.toString();
+                console.log(result);
+                $("#instructor").html(result);
+  
+            });
+       });
 
-</script>
 
-</script>
+
+    </script>
+
+    </script>
+
 </html>
