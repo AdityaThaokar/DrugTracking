@@ -93,216 +93,246 @@ if (typeof web3 != 'undefined')
  } 
 else 
 {
-web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
  }
  	web3.eth.defaultAccount = web3.eth.accounts[0];
- var addr = '0xc78d57689fdb59a49faa78655365a24e7abfb0b0'; 
+ var addr = '0xbbf289d846208c16edc8474705c748aff07732db'; 
          var abi = [
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "count",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "age",
-                "type": "uint256"
-            },
-            {
-                "name": "oname",
-                "type": "string"
-            }
-        ],
-        "name": "addTransactions",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "getInstructor",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "Record",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "drug_owner_list",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "_age",
-                "type": "uint256"
-            }
-        ],
-        "name": "validateDrug",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_fName",
-                "type": "string"
-            },
-            {
-                "name": "_age",
-                "type": "uint256"
-            },
-            {
-                "name": "_oname",
-                "type": "string"
-            }
-        ],
-        "name": "setInstructor",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "drug_count",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "getTransactionsLength",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
-                "name": "name",
-                "type": "string"
-            },
-            {
-                "indexed": false,
-                "name": "age",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "name": "oname",
-                "type": "string"
-            }
-        ],
-        "name": "Instructor",
-        "type": "event"
-    }
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "drug_id",
+				"type": "uint256"
+			},
+			{
+				"name": "oname",
+				"type": "string"
+			}
+		],
+		"name": "addTransactions",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_fName",
+				"type": "string"
+			},
+			{
+				"name": "_drug_id",
+				"type": "uint256"
+			},
+			{
+				"name": "_oname",
+				"type": "string"
+			}
+		],
+		"name": "setDrug",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "drug_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "oname",
+				"type": "string"
+			}
+		],
+		"name": "Drug",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "count",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drug_count",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drug_owner_list",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getDrug",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "drug_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getTransactions",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTransactionsLength",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "Record",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_drug_id",
+				"type": "uint256"
+			}
+		],
+		"name": "validateDrug",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
 ]
 
 var CoursetroContract = web3.eth.contract(abi);
 
 
-        var Coursetro = CoursetroContract.at(addr);
+// var Coursetro = CoursetroContract.at(addr,{"from":"0xe9d3a57c3236e9421500784fa893589f1f664b48","gasLimit":999999999999999});
+
+var Coursetro = CoursetroContract.at(addr);
 
 $("#Entry").click(function(){
+
 	var oname = document.getElementById("Oname").value;
 	var dname = document.getElementById("Dname").value;
 	var did = document.getElementById("DId").value;
-	Coursetro.setInstructor(dname,did,oname);
-	console.log("Added");
+	did=parseInt(did);
+	result = Coursetro.setDrug(dname,did,oname,{gas:4712388});
+		//Coursetro.setDrug(dname,did,oname);
+
+	console.log(result);
 });
 
 </script>
