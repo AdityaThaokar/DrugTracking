@@ -96,8 +96,22 @@ else
 web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
  }
  	web3.eth.defaultAccount = web3.eth.accounts[0];
- var addr = '0xe33a2369a62c0e2448516bb3462d38bc8f3a53aa'; 
+ var addr = '0x7d23f8b2ae75902b5cfd3c173d626b8d76c5abc8'; 
          var abi = [
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "count",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
 	{
 		"constant": false,
 		"inputs": [
@@ -119,157 +133,6 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_fName",
-				"type": "string"
-			},
-			{
-				"name": "_drug_id",
-				"type": "uint256"
-			},
-			{
-				"name": "_oname",
-				"type": "string"
-			}
-		],
-		"name": "setDrug",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "drug_id",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "oname",
-				"type": "string"
-			}
-		],
-		"name": "Drug",
-		"type": "event"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "count",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "drug_count",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "drug_owner_list",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getDrug",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "drug_id",
-				"type": "uint256"
-			}
-		],
-		"name": "getTransactions",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTransactionsLength",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -299,6 +162,66 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 		"constant": true,
 		"inputs": [
 			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drug_owner_list",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "drug_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getTransactions",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_fName",
+				"type": "string"
+			},
+			{
+				"name": "_drug_id",
+				"type": "uint256"
+			},
+			{
+				"name": "_oname",
+				"type": "string"
+			}
+		],
+		"name": "setDrug",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
 				"name": "_drug_id",
 				"type": "uint256"
 			}
@@ -313,6 +236,105 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drug_count",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_fName",
+				"type": "string"
+			},
+			{
+				"name": "_drug_id",
+				"type": "uint256"
+			},
+			{
+				"name": "_onamenew",
+				"type": "string"
+			}
+		],
+		"name": "updateOwner",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTransactionsLength",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getDrug",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "drug_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "oname",
+				"type": "string"
+			}
+		],
+		"name": "Drug",
+		"type": "event"
 	}
 ]
 

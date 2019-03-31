@@ -6,6 +6,7 @@
 	<title>Drug Updation</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	   <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 	<style type="text/css">
 		.card1{
 			padding: 10px;
@@ -62,10 +63,9 @@
 		<div class="container col-lg-4">
 			<h3>Update the Owner</h3>
 				<div class="card">
-				<form>
-	  				<div class="form-group ">
-	    			<label for="COname">Current Owner's Name : </label>
-	    			<input type="text" class="form-control" id="COname" placeholder="Enter Owner's Name">
+				<div class="form-group ">
+	    			<label for="NOname">Drug Name : </label>
+	    			<input type="text" class="form-control" id="dname" placeholder="Enter Owner's Name">
 	  				</div>
 	  				<div class="form-group ">
 	    			<label for="NOname">New Owner's Name : </label>
@@ -75,8 +75,7 @@
 	    			<label for="UID">Unique ID : </label>
 	    			<input type="text" class="form-control" id="UID" placeholder="Enter the Unique ID of the drug">
 	  				</div>
-	  				<button type="submit" class="btn btn-info" formaction="#" onclick=" ">Submit</button>
-				</form>
+	  				<button type="submit" class="btn btn-info" id="Entry" formaction="#" > Submit</button>
 				</div>
 			</div>
 		</div>
@@ -90,5 +89,275 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script>
+if (typeof web3 != 'undefined') 
+{
+ web3 = new Web3(web3.currentProvider);
+ } 
+else 
+{
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+ }
+ 	web3.eth.defaultAccount = web3.eth.accounts[0];
+ var addr = '0x7d23f8b2ae75902b5cfd3c173d626b8d76c5abc8'; 
+         var abi = [
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "count",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "drug_id",
+				"type": "uint256"
+			},
+			{
+				"name": "oname",
+				"type": "string"
+			}
+		],
+		"name": "addTransactions",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "Record",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drug_owner_list",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "drug_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getTransactions",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_fName",
+				"type": "string"
+			},
+			{
+				"name": "_drug_id",
+				"type": "uint256"
+			},
+			{
+				"name": "_oname",
+				"type": "string"
+			}
+		],
+		"name": "setDrug",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_drug_id",
+				"type": "uint256"
+			}
+		],
+		"name": "validateDrug",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "drug_count",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_fName",
+				"type": "string"
+			},
+			{
+				"name": "_drug_id",
+				"type": "uint256"
+			},
+			{
+				"name": "_onamenew",
+				"type": "string"
+			}
+		],
+		"name": "updateOwner",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTransactionsLength",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getDrug",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "drug_id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "oname",
+				"type": "string"
+			}
+		],
+		"name": "Drug",
+		"type": "event"
+	}
+]
+var CoursetroContract = web3.eth.contract(abi);
+
+
+// var Coursetro = CoursetroContract.at(addr,{"from":"0xe9d3a57c3236e9421500784fa893589f1f664b48","gasLimit":999999999999999});
+
+var Coursetro = CoursetroContract.at(addr);
+
+$("#Entry").click(function(){
+
+	var oname = document.getElementById("NOname").value;
+	var dname = document.getElementById("dname").value;
+	var did = document.getElementById("UID").value;
+	did=parseInt(did);
+	result = Coursetro.setDrug(dname,did,oname,{gas:4712388});
+		//Coursetro.setDrug(dname,did,oname);
+	console.log(result);
+});
+
+</script>
 </html>
 			
